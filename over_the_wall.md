@@ -2,7 +2,7 @@
 
 ## 介绍
     现在，翻墙了解更多国外的内容已经是很多人都掌握的技能，为了方便更多人了解和学习更多国外的知识，在这我准备了
-    一份完整的翻墙教程。在真正学会翻墙之前，我们需要了解一下翻墙的原理。如下图
+    一份完整的翻墙教程（基于编写好的脚本实现）。在真正学会翻墙之前，我们需要了解一下翻墙的原理。如下图
 
 <img src="./img/img01.png" width=800px>
 
@@ -75,17 +75,26 @@
 
     6. 那么，接下来我们就需要进行正式的搭建，也就是在XShell中对服务器进行操作
 
-        <1> 连接到服务器后输入下面的命令拉取shadowsocks安装脚本文件
+        <1> 连接到服务器后输入下面的命令拉取shadowsocks安装脚本文件，如下图
             wget --no-check-certificate -O shadowsocks-all.sh 脚本地址（在github中提供的shadowsocks）
+            脚本地址：https://raw.githubusercontent.com/Arbonkeep/over-the-wall/master/shadowsocks-all.sh
+
+ <img src="./img/img16.png" width=800px>           
 
         <2> 将其变为执行文件
             chmod +x shadowsocks-all.sh
 
-        <3> 执行安装文件
+ <img src="./img/img17.png" width=800px> 
+
+        <3> 执行安装文件,执行完以上命令后，会出现如下页面
             ./shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log
 
+ <img src="./img/img18.png" width=800px> 
+
         <4> 运行完最后的命令行后，会看到一个选项：Which Shadowsocks server you’d select，因为我们要安装ShadowsocksR，
-            就选择ShadowsocksR对应的数字。
+            就选择ShadowsocksR对应的数字。这里我们选择Python版，如下
+        
+ <img src="./img/img19.png" width=800px>
 
         <5> 然后会看到“Please enter password for ShadowsocksR”，这时需要设定一个以后翻墙时连接Shadowsocks的密码，请
             自行设定。
@@ -93,21 +102,42 @@
         <6> 下一个选项”Please enter a port for ShadowsocksR [1-65535]”是让选择一个Shadowsocks的服务器端口，建议使
             用：443。
 
-        <7> 接下来的选项“Please select stream cipher for ShadowsocksR”，是让选择加密方式，建议选择：chacha20-ietf。
+ <img src="./img/img20.png" width=800px>
 
-        <8> 下一个选项“Please select protocol for ShadowsocksR”，是让选择协议，建议选择：origin。
+        <7> 接下来的选项“Please select stream cipher for ShadowsocksR”，是让选择加密方式，建议选择：aes-256-cbf
+        
+ <img src="./img/img21.png" width=800px>
+
+        <8> 下一个选项“Please select protocol for ShadowsocksR”，是让选择协议，建议选择：origin。这里可能不会出现
 
         <9> 下一个选项“Please select obfs for ShadowsocksR”，是让选择混淆模式，建议选择：http_simple_compatible。
+            这里可能不会出现
 
         <10> 然后出现的指示“Press any key to start…or Press Ctrl+C to cancel”，意思是按任何键开始安装或按“Ctrl+C”
              取消安装。这时按回车键，就可以开始安装了.安装过程可能需要一段时间，请耐心等待。
 
-        <11> 补充：
+<img src="./img/img22.png" width=800px>
+
+        <11> 安装成功之后，出现以下画面
+
+<img src="./img/img23.png" width=800px>
+
+        <12> 在阿里云控制面板打开对应端口防火墙
+
+<img src="./img/img24.png" width=800px>
+
+        <13> 最后在我们本机下载好的shadowsocks中设置好相应的参数，就完成了整个操作
+
+<img src="./img/img25.png" width=800px>
+
+        <> 补充：
             * 修改shadowsocks配置:
               vi /etc/shadowsocks-r/config.json
 
             * 每次更改完设置后，需要运行以下命令行重启ShadowsocksR:
               /etc/init.d/shadowsocks-r restart
+
+            * 其实我们还可以通过bbr算法对我们的翻墙进行优化，如果感兴趣的话直接通过百度搜索bbr，找到对应教程即可实现
 
 
 
